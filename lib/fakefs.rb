@@ -116,8 +116,11 @@ module FakeFS
       parts * PATH_SEPARATOR
     end
 
-    def self.exists?(path)
-      FileSystem.find(path) || false
+    class << self
+      def exist?(path)
+        FileSystem.find(path) || false
+      end
+      alias exists? exist?
     end
 
     def self.directory?(path)
